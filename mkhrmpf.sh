@@ -100,7 +100,7 @@ esac
 	-i zstd \
 	-p "$(grep -hs '^[^#].' hrmpf.packages "hrmpf.${ARCH%-musl}.packages")" \
 	-A "gawk tnftp inetutils-hostname libressl-netcat dash vim-common" \
-	-S "acpid binfmt-support dhcpcd gpm sshd" \
+	-S "acpid binfmt-support dbus dhcpcd emptty gpm polkitd sshd wpa_supplicant" \
 	-I hrmpf-include \
 	-o "hrmpf-${ARCH}-${VERSION}.iso" \
 	-a "${ARCH}" \
