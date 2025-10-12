@@ -49,6 +49,7 @@ EOF
 cp hrmpf-include/etc/skel/.bashrc hrmpf-include/root/.bashrc
 mkdir -p hrmpf-include/etc/sysctl.d
 touch hrmpf-include/etc/sysctl.d/10-void-user.conf
+cp -r hrmpf-include-personal/* hrmpf-include/
 
 case "$ARCH" in
 	x86_64*)
