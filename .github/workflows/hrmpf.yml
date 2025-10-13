@@ -146,9 +146,18 @@ jobs:
         id: checksum
         run: |
           pushd distdir
-          sha256sum --tag *.iso > checksums.txt
-          b2sum --tag *.iso >> checksums.txt
-          b3sum *.iso | sed -E 's/^([a-z0-9]+)\s+(.+)$/BLAKE3 (\2) = \1/' >> checksums.txt
+          for f in *.iso *.torrent; do
+            size=$(du -b "$f" | cut -f1)
+            if [ $size -gt 2048*1024*1024 ]; then
+              if [ ! -f "${f}.xz" ]; then
+                xz -9 -S 2048m "$f"
+              fi
+              f="${f}.xz"
+            fi
+            sha256sum --tag "$f" >> checksums.txt
+            b2sum --tag "$f" >> checksums.txt
+            b3sum "$f" | sed -E 's/^([a-z0-9]+)\s+(.+)$/BLAKE3 (\2) = \1/' >> checksums.txt
+          done
           popd
           echo '```' > release-body.txt
           cat distdir/checksums.txt >> release-body.txt
@@ -196,3 +205,4 @@ jobs:
           files: |
             distdir/*.iso
             distdir/*.torrent
+            distdir/*.xz
