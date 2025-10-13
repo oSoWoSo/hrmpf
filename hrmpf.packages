@@ -25,7 +25,6 @@ lshw
 lsof
 lsscsi
 ltrace
-memtest86+
 memtester
 nethogs
 pciutils
