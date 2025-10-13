@@ -95,7 +95,7 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "open terminal", terminal },
-                                    { "applications", appmenu.Appmenu}
+                                    { "applications", appmenu.Appmenu }
                                   }
                         })
 
