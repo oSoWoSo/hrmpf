@@ -1,7 +1,7 @@
 # lts kernel
 # some aarch64 targets don't support older kernels
-linux6.1
-linux6.1-headers
+linux-lts
+linux-lts-headers
 
 # diagnosis
 cpuburn
