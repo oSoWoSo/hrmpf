@@ -615,12 +615,14 @@ mesa-dri
 obconf
 obmenu-generator
 openbox
+papirus-icon-theme
 pipewire
 tint2
 tint2conf
 udisks2
 vpm
 vsv
+xcursor-themes
 xorg-minimal
 zfsbootmenu
 zfs-auto-snapshot
