@@ -17,6 +17,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+--Importing appmenu module
+local appmenu = require("appmenu")
+awful.spawn.with_shell("awesome-appmenu")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -91,7 +94,8 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "open terminal", terminal },
+                                    { "applications", appmenu.Appmenu}
                                   }
                         })
 
