@@ -16,4 +16,5 @@
 #
 #xfce-mcs-manager &
 obmenu-generator -p -i -d -c
+feh --bg-scale /usr/share/void-artwork/void-background.png &
 tint2 &
