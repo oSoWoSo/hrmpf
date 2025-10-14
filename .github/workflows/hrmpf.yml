@@ -146,9 +146,9 @@ jobs:
         id: checksum
         run: |
           pushd distdir
-          for f in *.iso *.torrent; do
+          for f in *.iso; do
             size=$(du -b "$f" | cut -f1)
-            if [ $size -gt 2048*1024*1024 ]; then
+            if [ $size -ge $((2048*1024*1024)) ]; then
               if [ ! -f "${f}.xz" ]; then
                 xz -9 -S 2048m "$f"
               fi
@@ -168,6 +168,9 @@ jobs:
         run: |
           cd distdir
           for f in ./*.iso; do
+            ../mktorrent.sh "$f"
+          done
+          for f in ./*.xz; do
             ../mktorrent.sh "$f"
           done
 
