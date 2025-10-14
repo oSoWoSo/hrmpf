@@ -149,7 +149,8 @@ jobs:
           for f in *.iso; do
             size=$(du -b "$f" | cut -f1)
             if [ $size -ge $((2048*1024*1024)) ]; then
-              xz -9 -S 2048m "${f}.xz"
+              xz -9 -S 2048m "${f}"
+              ls
               f="${f}.xz"
             fi
             sha256sum --tag "$f" >> checksums.txt
