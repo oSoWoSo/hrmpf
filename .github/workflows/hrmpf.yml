@@ -227,6 +227,4 @@ jobs:
           files: |
             distdir/*.iso
             distdir/*.torrent
-            distdir/*.iso_part_aa
-            distdir/*.iso_part_ab
-            
+            distdir/*.iso_part_[a-z][a-z]
