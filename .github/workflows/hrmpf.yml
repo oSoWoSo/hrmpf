@@ -182,12 +182,13 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           cd distdir
+          ls
           for f in ./*.iso; do
             ../mktorrent.sh "$f"
           done
-          for f in ./*.xz; do
-            ../mktorrent.sh "$f"
-          done
+          #for f in ./*.xz; do
+          #  ../mktorrent.sh "$f"
+          #done
 
       - name: Upload artifacts
         id: upload
