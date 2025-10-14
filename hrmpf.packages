@@ -594,20 +594,30 @@ void-live-audio
 
 # ADDED
 alsa-pipewire
-awesome
-awesome-appmenu
 dejavu-fonts-ttf
 dtrx
 emptty
-firefox
 fuzzypkg
 geany
 gum
-feh
 helix
+lazygit
+pipewire
+udisks2
+vpm
+vsv
+zfsbootmenu
+zfs-auto-snapshot
+zfs-pam
+
+# GUI
+awesome
+awesome-appmenu
+firefox
+geany
+feh
 jgmenu
 kitty
-lazygit
 lxappearance-obconf
 mesa-dri
 mpv
@@ -615,14 +625,7 @@ obconf
 obmenu-generator
 openbox
 papirus-icon-theme
-pipewire
 tint2
 tint2conf
-udisks2
-vpm
-vsv
 xcursor-themes
 xorg-minimal
-zfsbootmenu
-zfs-auto-snapshot
-zfs-pam
