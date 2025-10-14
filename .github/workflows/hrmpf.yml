@@ -149,13 +149,29 @@ jobs:
           for f in *.iso; do
             size=$(du -b "$f" | cut -f1)
             if [ $size -ge $((2048*1024*1024)) ]; then
-              xz -9 -S 2048m "${f}"
-              ls
-              f="${f}.xz"
+              if [ ! -f "${f}.xz" ]; then
+                xz -9 "$f"
+              fi
+              xz_size=$(du -b "${f}.xz" | cut -f1)
+              if [ $xz_size -ge $((2048*1024*1024)) ]; then
+                echo "Splitting ${f}.xz into parts..."
+                split -b 2048m "${f}.xz" "${f}_part_"
+                rm "${f}.xz"
+                for part in ${f}_part_*; do
+                  sha256sum --tag "$part" >> checksums.txt
+                  b2sum --tag "$part" >> checksums.txt
+                  b3sum "$part" | sed -E 's/^([a-z0-9]+)\s+(.+)$/BLAKE3 (\2) = \1/' >> checksums.txt
+                done
+              else
+                sha256sum --tag "${f}.xz" >> checksums.txt
+                b2sum --tag "${f}.xz" >> checksums.txt
+                b3sum "${f}.xz" | sed -E 's/^([a-z0-9]+)\s+(.+)$/BLAKE3 (\2) = \1/' >> checksums.txt
+              fi
+            else
+              sha256sum --tag "${f}" >> checksums.txt
+              b2sum --tag "${f}" >> checksums.txt
+              b3sum "${f}" | sed -E 's/^([a-z0-9]+)\s+(.+)$/BLAKE3 (\2) = \1/' >> checksums.txt
             fi
-            sha256sum --tag "$f" >> checksums.txt
-            b2sum --tag "$f" >> checksums.txt
-            b3sum "$f" | sed -E 's/^([a-z0-9]+)\s+(.+)$/BLAKE3 (\2) = \1/' >> checksums.txt
           done
           popd
           echo '```' > release-body.txt
