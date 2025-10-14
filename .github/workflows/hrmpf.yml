@@ -186,9 +186,9 @@ jobs:
           for f in ./*.iso; do
             ../mktorrent.sh "$f"
           done
-          #for f in ./*.xz; do
-          #  ../mktorrent.sh "$f"
-          #done
+          for f in ./*.iso_part_*; do
+            ../mktorrent.sh "$f"
+          done
 
       - name: Upload artifacts
         id: upload
@@ -224,4 +224,4 @@ jobs:
           files: |
             distdir/*.iso
             distdir/*.torrent
-            distdir/*.xz
+            distdir/*.iso_part_*
