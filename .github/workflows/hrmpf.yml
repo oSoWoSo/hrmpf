@@ -186,18 +186,8 @@ jobs:
           for f in ./*.iso; do
             ../mktorrent.sh "$f"
           done
-          if [ -f *.iso_part_aa ]; then
-            for f in ./*.iso_part_aa; do
-              ../mktorrent.sh "$f"
-            done
-          fi
-          if [ -f *.iso_part_ab ]; then
-            for f in ./*.iso_part_ab; do
-              ../mktorrent.sh "$f"
-            done
-          fi
-          if [ -f *.iso_part_ac ]; then
-            for f in ./*.iso_part_ac; do
+          if [ -f *.iso_part_?? ]; then
+            for f in ./*.iso_part_??; do
               ../mktorrent.sh "$f"
             done
           fi
@@ -236,4 +226,4 @@ jobs:
           files: |
             distdir/*.iso
             distdir/*.torrent
-            distdir/*.iso_part_*
+            distdir/*.iso_part_??
