@@ -191,6 +191,11 @@ jobs:
               ../mktorrent.sh "$f"
             done
           fi
+          if [ -f *.iso.xz ]; then
+            for f in ./*.iso.xz; do
+              ../mktorrent.sh "$f"
+            done
+          fi
 
       - name: Upload artifacts
         id: upload
@@ -229,4 +234,5 @@ jobs:
             distdir/*.torrent
             distdir/*.iso_xz_part_aa
             distdir/*.iso_xz_part_ab
+            distdir/*.iso.xz
 
