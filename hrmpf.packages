@@ -598,7 +598,6 @@ dejavu-fonts-ttf
 dtrx
 emptty
 fuzzypkg
-geany
 gum
 helix
 lazygit
@@ -613,7 +612,6 @@ zfs-pam
 # GUI
 awesome
 awesome-appmenu
-firefox
 geany
 feh
 jgmenu
@@ -624,8 +622,8 @@ mpv
 obconf
 obmenu-generator
 openbox
-papirus-icon-theme
+#papirus-icon-theme
 tint2
 tint2conf
-xcursor-themes
+#xcursor-themes
 xorg-minimal
