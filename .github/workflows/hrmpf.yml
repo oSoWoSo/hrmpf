@@ -153,11 +153,11 @@ jobs:
                 xz -9 "$f"
               fi
               xz_size=$(du -b "${f}.xz" | cut -f1)
-              if [ $xz_size -ge $((1536*1024*1024)) ]; then
+              if [ $xz_size -ge $((2048*1024*1024)) ]; then
                 echo "Splitting ${f}.xz into parts..."
-                split -b 2048m "${f}.xz" "${f}_part_"
+                split -b 2048m "${f}.xz" "${f}_xz_part_"
                 rm "${f}.xz"
-                for part in ${f}_part_*; do
+                for part in ${f}_xz_part_*; do
                   sha256sum --tag "$part" >> checksums.txt
                   b2sum --tag "$part" >> checksums.txt
                   b3sum "$part" | sed -E 's/^([a-z0-9]+)\s+(.+)$/BLAKE3 (\2) = \1/' >> checksums.txt
@@ -186,8 +186,8 @@ jobs:
           for f in ./*.iso; do
             ../mktorrent.sh "$f"
           done
-          if [ -f *.iso_part_?? ]; then
-            for f in ./*.iso_part_??; do
+          if [ -f *.iso_xz_part_?? ]; then
+            for f in ./*.iso_xz_part_??; do
               ../mktorrent.sh "$f"
             done
           fi
@@ -227,6 +227,6 @@ jobs:
           files: |
             distdir/*.iso
             distdir/*.torrent
-            distdir/*.iso_part_aa
-            distdir/*.iso_part_ab
+            distdir/*.iso_xz_part_aa
+            distdir/*.iso_xz_part_ab
 
