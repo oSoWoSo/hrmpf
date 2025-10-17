@@ -153,7 +153,7 @@ jobs:
                 xz -9 "$f"
               fi
               xz_size=$(du -b "${f}.xz" | cut -f1)
-              if [ $xz_size -ge $((2048*1024*1024)) ]; then
+              if [ $xz_size -ge $((1536*1024*1024)) ]; then
                 echo "Splitting ${f}.xz into parts..."
                 split -b 2048m "${f}.xz" "${f}_part_"
                 rm "${f}.xz"
